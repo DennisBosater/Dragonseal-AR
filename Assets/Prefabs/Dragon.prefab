@@ -873,6 +873,7 @@ GameObject:
   - component: {fileID: 8247820877780864118}
   - component: {fileID: 8247820877780864105}
   - component: {fileID: 8893825590471175704}
+  - component: {fileID: 986068744353779835}
   m_Layer: 0
   m_Name: Dragon
   m_TagString: Dragon
@@ -930,6 +931,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 762441a7d6978c946a253bb02d91f37e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &986068744353779835
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8247820877780864104}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.4
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!1 &8247820877818661058
 GameObject:
   m_ObjectHideFlags: 0
