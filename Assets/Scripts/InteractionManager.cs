@@ -51,7 +51,7 @@ public class InteractionManager : MonoBehaviour
                 //Instantiate(dragonHitVFX, hitinfo.transform.position, hitinfo.transform.rotation);
                 //Destroy(dragonHitVFX, 1);
 
-                //ChangeScore(1);
+                ChangeScore(1);
 
                 Destroy(hitinfo.transform.gameObject);
             }
