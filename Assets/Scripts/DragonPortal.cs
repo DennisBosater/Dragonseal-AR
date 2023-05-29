@@ -44,7 +44,7 @@ public class DragonPortal : MonoBehaviour
             // Generate random values for dragon behavior
             float spawnDelay = Random.Range(minSpawnDelay, maxSpawnDelay) - elapsedTime * spawnRateIncrease;
             float flightAngle = Random.Range(-20f, -45f);
-            float flightSpeed = Random.Range(0.08f, 0.25f);
+            float flightSpeed = Random.Range(0.08f, 0.16f);
             Quaternion randomRotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
 
             // Check if enough time has passed since the last spawn

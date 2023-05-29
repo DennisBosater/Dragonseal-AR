@@ -5,22 +5,17 @@ using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch; // För hantering av finger touch
+using TMPro;
 
 using newInputTouch = UnityEngine.InputSystem.EnhancedTouch; // Skapa en referens till sökvägen för EnhancedTouch
 
-//using AugmentedRealityCourse;
-
 public class InteractionManager : MonoBehaviour
 {
-    [SerializeField] private GameObject objectToPlace;
-
-    private GameObject spawnedObject;
-
-    [SerializeField] private ARRaycastManager raycastManager;
-
-    private static List<ARRaycastHit> hitResults = new List<ARRaycastHit>();
-
     [SerializeField] private GameObject dragonHitVFX;
+
+    public TextMeshProUGUI text;
+
+    int score;
 
     private void Awake()
     {
@@ -40,10 +35,8 @@ public class InteractionManager : MonoBehaviour
     private void Touch_onFingerDown(Finger obj)
     {
         //// gör er interaktion här!
-        // Konvertera över skärmpositionen vi tryckte på , på mobilens skärm
-        // till en Vector3 , genom att komplettera med near clip plane värdet.
-        // near clip plane värdet syftar till det närmaste planet för kameran
-        // som ligger närmast mobilens skärm. 
+        // Konvertera över skärmpositionen vi tryckte på , på mobilens skärm till en Vector3 , genom att komplettera med near clip plane värdet.
+        // near clip plane värdet syftar till det närmaste planet för kameran som ligger närmast mobilens skärm. 
         Vector3 screenPos = new Vector3(obj.screenPosition.x, obj.screenPosition.y, Camera.main.nearClipPlane);
 
         // Här utförs att vi skapar en raystråle från skärmens position
@@ -51,50 +44,23 @@ public class InteractionManager : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(screenPos);
 
         // Kolla då om denna raystråle träffar något objekt som har en kollisionobjekt kopplat till sig. 
-        if (Physics.Raycast(ray, 100f))
+        if (Physics.Raycast(ray, out RaycastHit hitinfo, 1000f))
         {
-            // Om appen når ända hit så har en interaktion skett med något 3D objekt i scenen
-            Instantiate(dragonHitVFX);
+            if (hitinfo.transform.tag == "Dragon")
+            {
+                //Instantiate(dragonHitVFX, hitinfo.transform.position, hitinfo.transform.rotation);
+                //Destroy(dragonHitVFX, 1);
+
+                //ChangeScore(1);
+
+                Destroy(hitinfo.transform.gameObject);
+            }
         }
     }
 
-    bool TryGetTouchPosition(out Vector2 touchPos)
+    public void ChangeScore(int scoreValue)
     {
-        if (Input.touchCount > 0)
-        {
-            // Läser av vart jag tryckt på mobilskärmen
-            // den returnerar tillbaks positionen vart jag tryckte någonstans där och kopierar över värdet till touchPos
-            touchPos = Input.GetTouch(0).position;
-
-            return true;
-        }
-
-        touchPos = default; // Lägg märke till nyckelordet "default"
-
-        return false;
-    }
-
-    void Update()
-    {
-        if (!TryGetTouchPosition(out Vector2 touchPos))
-        {
-            return;
-        }
-
-        if (raycastManager.Raycast(touchPos, hitResults, TrackableType.Planes))
-        {
-            Pose pose = hitResults[0].pose;
-
-            if (spawnedObject == null)
-            {
-                spawnedObject = Instantiate(objectToPlace, pose.position, pose.rotation);
-                spawnedObject.SetActive(true);
-            }
-            else
-            {
-                // spawnedObject.transform.position = pose.position;
-                // spawnedObject.transform.rotation = pose.rotation;
-            }
-        }
+        score += scoreValue;
+        text.text = score.ToString();
     }
 }
