@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System;
 
 public class CountdownTimer : MonoBehaviour
 {
@@ -8,6 +9,12 @@ public class CountdownTimer : MonoBehaviour
     public GameObject deactivateDragonPortal;
     public GameObject deactivateUIHud;
     public GameObject activateUIWinstate;
+
+    internal float GetCurrentTime()
+    {
+        throw new NotImplementedException();
+    }
+
     public TextMeshProUGUI scoreGame;
     public TextMeshProUGUI scoreWinstate;
 

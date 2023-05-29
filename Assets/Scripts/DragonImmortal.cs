@@ -3,28 +3,27 @@ using UnityEngine;
 public class DragonImmortal : MonoBehaviour
 {
     private SphereCollider sphereCollider;
+    private GameObject immortalEffect;
 
     private void Start()
     {
-        // Get the Sphere Collider component attached to the GameObject
         sphereCollider = GetComponent<SphereCollider>();
+        immortalEffect = transform.Find("ImmortalVFX").gameObject;
 
-        // Call the ActivateColliderAfterDelay function after 0.75 seconds
-        Invoke("ActivateColliderAfterDelay", 0.75f);
+        Invoke("NoLongerImmortal", 1.25f);
     }
 
-    private void ActivateColliderAfterDelay()
+    private void NoLongerImmortal()
     {
-        // Find the child GameObject with the desired name
-        GameObject immortalEffect = transform.Find("ImmortalVFX").gameObject;
+        sphereCollider.enabled = true;
 
-        // Destroy the child GameObject
+        // Sphere Collider settings
+        sphereCollider.radius = 3.5f;
+        sphereCollider.center = new Vector3(0.0f, 5.0f, 0.0f);
+
         if (immortalEffect != null)
         {
-            Destroy(immortalEffect);
+            Destroy(immortalEffect.gameObject);
         }
-
-        // Activate the collider
-        sphereCollider.enabled = true;
     }
 }

@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR.ARFoundation;
-using UnityEngine.XR.ARSubsystems;
-using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
 using TMPro;
 
@@ -12,6 +7,7 @@ using newInputTouch = UnityEngine.InputSystem.EnhancedTouch;
 public class InteractionManager : MonoBehaviour
 {
     [SerializeField] private GameObject dragonHitVFX;
+    [SerializeField] private AudioSource dragonHitSound;
 
     public TextMeshProUGUI text;
 
@@ -42,11 +38,15 @@ public class InteractionManager : MonoBehaviour
         {
             if (hitinfo.transform.tag == "Dragon")
             {
-                //Instantiate(dragonHitVFX, hitinfo.transform.position, hitinfo.transform.rotation);
-                //Destroy(dragonHitVFX, 1);
-
                 ChangeScore(1);
 
+                Vector3 spawnPosition = hitinfo.transform.position + new Vector3(0f, 0.025f, 0f);
+                GameObject vfx = Instantiate(dragonHitVFX, spawnPosition, Quaternion.identity);
+
+                if (dragonHitSound != null)
+                    dragonHitSound.Play();
+
+                Destroy(vfx, 1f); // Destroy the visual effect after 1 second
                 Destroy(hitinfo.transform.gameObject);
             }
         }

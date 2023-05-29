@@ -5,8 +5,8 @@ public class DragonPortal : MonoBehaviour
     public GameObject dragonPrefab;
     public float initialSpawnDelay = 3f; // Initial delay before first dragon spawn
     public float minSpawnDelay = 0.5f;
-    public float maxSpawnDelay = 2.0f;
-    public float spawnRateIncrease = 0.5f; // Rate at which the spawn rate increases over time
+    public float maxSpawnDelay = 2.5f;
+    public float spawnRateIncrease = 0.1f; // Rate at which the spawn rate increases over time
 
     private float elapsedTime = 0f; // Time elapsed since the start of the game
     private float lastSpawnTime = 0f; // Time of the last dragon spawn
@@ -60,8 +60,8 @@ public class DragonPortal : MonoBehaviour
                     dragonFlight.SetFlightBehavior(flightAngle, flightSpeed);
                 }
 
-                // Destroy the dragon after 5 seconds
-                Destroy(dragon, 5f);
+                // Destroy the dragon after 6 seconds
+                Destroy(dragon, 6f);
 
                 // Update the last spawn time
                 lastSpawnTime = Time.time;
