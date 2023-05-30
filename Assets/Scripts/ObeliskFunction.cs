@@ -1,18 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Obelisk : MonoBehaviour
+public class ObeliskFunction : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject objectToActivate;
+    public GameObject objectToDeactivate;
+
+    private InteractionManager interactionManager;
+
+    private void Awake()
     {
-        
+        interactionManager = GetComponent<InteractionManager>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (interactionManager.score >= 20)
+        {
+            objectToActivate.SetActive(true);
+            objectToDeactivate.SetActive(false);
+        }
     }
 }

@@ -11,7 +11,7 @@ public class InteractionManager : MonoBehaviour
 
     public TextMeshProUGUI text;
 
-    int score;
+    public int score;
 
     private void Awake()
     {
