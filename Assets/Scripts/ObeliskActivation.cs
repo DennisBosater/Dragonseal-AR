@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ObeliskFunction : MonoBehaviour
+public class ObeliskActivation : MonoBehaviour
 {
     public GameObject objectToActivate;
     public GameObject objectToDeactivate;
