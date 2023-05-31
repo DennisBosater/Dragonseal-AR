@@ -7,6 +7,7 @@ public class CountdownTimer : MonoBehaviour
     public TextMeshProUGUI countdownText;
     public float countdownTime = 100f;
     public GameObject deactivateDragonPortal;
+    public GameObject deactivateObelisk;
     public GameObject deactivateUIHud;
     public GameObject activateUIWinstate;
 
@@ -39,6 +40,7 @@ public class CountdownTimer : MonoBehaviour
 
             // Perform actions when the countdown reaches zero
             DeactivateDragonPortal();
+            DeactivateObelisk();
             DestroyDragons();
             DeactivateUIHud();
             ActivateObject();
@@ -54,6 +56,12 @@ public class CountdownTimer : MonoBehaviour
     {
         if (deactivateDragonPortal != null)
             deactivateDragonPortal.SetActive(false);
+    }
+
+    private void DeactivateObelisk()
+    {
+        if (deactivateObelisk != null)
+            deactivateObelisk.SetActive(false);
     }
 
     private void DestroyDragons()
