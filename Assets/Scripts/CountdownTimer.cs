@@ -9,7 +9,9 @@ public class CountdownTimer : MonoBehaviour
     public GameObject deactivateDragonPortal;
     public GameObject deactivateObelisk;
     public GameObject deactivateUIHud;
+    public GameObject deactivateTracking;
     public GameObject activateUIWinstate;
+    public GameObject activateAt8Seconds; // New object to activate
 
     internal float GetCurrentTime()
     {
@@ -43,9 +45,15 @@ public class CountdownTimer : MonoBehaviour
             DeactivateObelisk();
             DestroyDragons();
             DeactivateUIHud();
+            DeactivateMarkerlessTracking();
             ActivateObject();
             TransferTextValue();
             StopMusic(); // Stop playing the music
+        }
+        else if (countdownTime <= 8f) // Check if countdown reaches 8 seconds
+        {
+            // Activate the object at 8 seconds
+            ActivateAt8Seconds();
         }
 
         // Update the countdown text
@@ -80,6 +88,12 @@ public class CountdownTimer : MonoBehaviour
             deactivateUIHud.SetActive(false);
     }
 
+    private void DeactivateMarkerlessTracking()
+    {
+        if (deactivateTracking != null)
+            deactivateTracking.SetActive(false);
+    }
+
     private void ActivateObject()
     {
         if (activateUIWinstate != null)
@@ -101,5 +115,12 @@ public class CountdownTimer : MonoBehaviour
         {
             musicSource.Stop();
         }
+    }
+
+    // Function to activate the object at 8 seconds
+    private void ActivateAt8Seconds()
+    {
+        if (activateAt8Seconds != null)
+            activateAt8Seconds.SetActive(true);
     }
 }

@@ -2,20 +2,23 @@ using UnityEngine;
 
 public class ObeliskPlacement : MonoBehaviour
 {
-    public GameObject obeliskPrefab;
-    public GameObject obeliskTracking;
-    public GameObject markerlessTracking;
+    public GameObject obeliskPrefab; // Reference to the object to be activated and placed
 
-    private void OnEnable()
+    private void Start()
     {
-        // Deactivate the two game objects
-        obeliskTracking.SetActive(false);
-        markerlessTracking.SetActive(false);
+        ActivateAndPlace();
+    }
 
-        // Activate the target game object
-        obeliskPrefab.SetActive(true);
+    private void ActivateAndPlace()
+    {
+        // Instantiate the obelisk prefab and place it in the position of the current obelisk
+        GameObject newObelisk = Instantiate(obeliskPrefab, transform.position, transform.rotation);
 
-        // Set the position of the target game object to the position of objectToDeactivate1
-        obeliskPrefab.transform.position = obeliskTracking.transform.position;
+        // Get the parent object
+        Transform parent = transform.parent;
+
+        // Deactivate the current obelisk
+        gameObject.SetActive(false);
+
     }
 }

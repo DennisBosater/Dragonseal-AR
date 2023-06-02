@@ -9701,7 +9701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6480d187d8d06204baa5b4215c070142, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dragonPrefab: {fileID: 2503943470884598928, guid: 0c7f5953dccbb1e4fb83b5413adc63c9, type: 3}
+  dragonPrefab: {fileID: 1433171404054833766, guid: f3a52a6f4c27ed842961e3408cc98421, type: 3}
   initialSpawnDelay: 3
   minSpawnDelay: 0.35
   maxSpawnDelay: 2
