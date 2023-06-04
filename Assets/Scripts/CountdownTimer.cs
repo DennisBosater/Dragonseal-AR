@@ -9,7 +9,8 @@ public class CountdownTimer : MonoBehaviour
     public GameObject deactivateDragonPortal;
     public GameObject deactivateObelisk;
     public GameObject deactivateUIHud;
-    public GameObject deactivateTracking;
+    public GameObject deactivateMLTracking;
+    public GameObject deactivateMBTracking;
     public GameObject activateUIWinstate;
     public GameObject activateAt8Seconds; // New object to activate
 
@@ -46,6 +47,7 @@ public class CountdownTimer : MonoBehaviour
             DestroyDragons();
             DeactivateUIHud();
             DeactivateMarkerlessTracking();
+            DeactivateMarkerbasedTracking();
             ActivateObject();
             TransferTextValue();
             StopMusic(); // Stop playing the music
@@ -90,9 +92,16 @@ public class CountdownTimer : MonoBehaviour
 
     private void DeactivateMarkerlessTracking()
     {
-        if (deactivateTracking != null)
-            deactivateTracking.SetActive(false);
+        if (deactivateMLTracking != null)
+            deactivateMLTracking.SetActive(false);
     }
+
+    private void DeactivateMarkerbasedTracking()
+    {
+        if (deactivateMBTracking != null)
+            deactivateMBTracking.SetActive(false);
+    }
+
 
     private void ActivateObject()
     {
